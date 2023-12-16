@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+      
+<style>  
+    .row{
+        margin-top: 100px;
+    }    
+    .written{
+        margin-left: 100px;
+    }
+    .but1{
+        height: 52px;
+        width: 369px;
+        margin-bottom: 15px;
+        border-radius: 7px;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    form{
+        width: 400px;
+        margin-left: 40px;
+    } 
+</style>
+<body>   
+<div class="container">
+    <div class="row  justify-content-center align-items-center">
+        <div class="col-6">
+            <form class="frm shadow bg-body rounded p-3" id="application">
+                <div id="empty">
+                </div>
+                <div class="form-floating mb-3">
+                    <input id="email" class="form-control mail" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input id="password" class="form-control pswd" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary mt-4 but1">Submit</button><br>
+                </form>
+        </div>  
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">  </script>
+<script> 
+    const result = document.getElementById("application");
+    result.addEventListener('submit', prevent);
+    function prevent(e) {
+        e.preventDefault();
+        const mail= document.getElementById("email").value;
+        const pass= document.getElementById("password").value;
+             
+        async function calling(){
+            const url = '/v1/newlogin'
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    Email : mail,
+                    Pass: pass,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            });
+            const fetched = document.getElementById('empty');    
+            const res= await response.json();
+            // console.log(res);
+               
+            if(res.message == "success"){
+                result.innerHTML=`
+                <div class="alert alert-success" role="alert">
+                    ✔ Form Login Successfully!
+                </div>
+                <div>
+                    <button class="btn btn-dark" onClick="window.location.reload();">Back To From</button>
+                </div>`
+                }
+            else{
+                fetched.innerHTML=`
+                <div class="alert alert-warning" role="alert">
+                    ${res.Response}
+                </div>`
+            }
+        }
+        calling();
+        }
+
+</script>
+</body>
+</html>

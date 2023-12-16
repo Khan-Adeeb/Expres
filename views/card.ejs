@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<style>
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+
+}
+.main-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+card{
+    border-radius: 10px;
+    border: 0.1px solid #e4e4e7;
+    width: 350px;
+    height: auto;
+    padding: 24px;
+}
+CardHeader h3{
+    color: #09090B;
+    font-size: 24px;
+    font-weight: 600;
+}
+CardHeader p{
+    font-size: 14px;
+    color: #71717a;
+}
+label{
+    color: #09090B;
+    font-size: 14px;
+    font-weight: 500;
+}
+input{
+    margin-top: 4px;
+    padding: 8px 12px;
+    border: 0.1px solid #e4e4e7;
+    border-radius: 6px;
+    width: 100%;
+}
+select{
+    margin-top: 6px;
+    padding: 8px 12px;
+    border: 0.1px solid #e4e4e7;
+    border-radius: 6px;
+    width: 100%;
+}
+::placeholder{
+    color: #71717a;
+    font-size: 14px;
+}
+.options{
+    margin-top: 10px;
+}
+CardFooter{
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+.cancel{
+    background-color: transparent;
+    color: #09090B;
+    font-size: 14px;
+    padding: 8px  16px ;
+    border: 0.1px solid #e4e4e7;
+    border-radius: 6px;
+    font-weight: 500;
+}
+.submit{
+    background-color: #18181b;
+    color: #fafafa;
+    font-size: 14px;
+    padding: 8px  16px ;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+}
+</style>
+
+<body>
+<div class="main-cont">
+    <card>
+        <div id="closed">
+        <CardHeader>
+            <h3>Create project</h3>
+            <p>Deploy your new project in one-click.</p>
+        </CardHeader>
+        <form id="application">
+            <CardContent>
+                <div id="empty">
+                </div>
+                <div class="txt">
+                  <Label for="name" class="txt1">Name</Label> <br>
+                  <Input type="text" name="name" id="name" placeholder="Name of your project" />
+                </div>
+                <div class="options">
+                  <Label for="framework">Framework</Label> <br>
+                  <Select id="framework" name="framework" class="framework">
+                    <option value="" disabled selected>Select</option>
+                    <option value="next">Next.js</option>
+                    <option value="sveltekit">SvelteKit</option>
+                    <option value="astro">Astro</option>
+                    <option value="nuxt">Nuxt.js</option>
+                  </Select>
+                </div>
+            </CardContent>
+            <CardFooter class="Footer">
+                <Button type="reset" class="cancel">Cancel</Button>
+                <Button type="submit" class="submit">Deploy</Button>
+            </CardFooter>
+        </form>
+        </div>
+    </card>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script> 
+ const result = document.getElementById("closed");
+ result.addEventListener('submit', prevent);
+
+function prevent(e) {
+     e.preventDefault();
+
+     const mail= document.getElementById("name").value;
+     const select= document.getElementById("framework").value;
+   
+     async function calling(){
+         const url = '/admin/card'
+         const response = await fetch(url, {
+         method: 'POST',
+         body: JSON.stringify({
+             Email : mail,
+             Select: select,
+         }),
+         headers: {
+             "Content-type": "application/json; charset=UTF-8"
+         }
+     });
+    
+    const fetched = document.getElementById('empty');    
+    const res= await response.json();
+     // console.log(res);
+     
+    if(res.message == "success"){
+        result.innerHTML=`
+        <div class="alert alert-success" role="alert">
+         ✔ Form Login Successfully!
+        </div>
+        <div>
+            <button class="btn btn-dark" onClick="window.location.reload();">Back To From</button>
+        </div>
+        `
+    }
+    else{
+        fetched.innerHTML=`
+        <div class="alert alert-warning" role="alert">
+            ${res.Response}
+        </div>
+        `
+     }
+ }
+ calling();
+}
+
+</script>
+
+</body>
+</html>

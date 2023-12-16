@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        font-family: sans-serif;
+    }
+    .main-cont{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    card{
+        border-radius: 10px;
+        border: 0.1px solid #e4e4e7;
+        width: 400px;
+        height: auto;
+        padding: 24px 26px;
+        box-shadow: 1px 1px 1px 1px #4444449e;
+    }
+    CardHeader h3{
+        color: #09090B;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    CardHeader p{
+        font-size: 14px;
+        color: #71717a;
+        margin-bottom: 20px;
+    }
+    label{
+        color: #09090B;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    input{
+        margin-top: 4px;
+        margin-bottom: 15px;
+        padding: 8px 12px;
+        border: 0.1px solid #e4e4e7;
+        border-radius: 6px;
+        width: 93%;
+    }
+    ::placeholder{
+        color: #71717a;
+        font-size: 14px;
+    }
+    CardFooter{
+        margin-top: 18px;   
+        display: flex;
+        justify-content: space-between;
+    }
+    .cancel{
+        background-color: transparent;
+        color: #09090B;
+        font-size: 14px;
+        padding: 8px  16px ;
+        border: 0.1px solid #e4e4e7;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+    .submit{
+        background-color: #18181b;
+        color: #fafafa;
+        font-size: 14px;
+        padding: 8px  16px ;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+</style>
+    
+<body>
+    <div class="main-cont">
+        <card id="application">
+            <div id="closed">
+            <CardHeader>
+                <h3>Login to proceed</h3>
+                <p>Welcome to our college!</p>
+            </CardHeader>
+            <form id="application" method="post" >
+                <CardContent>
+                    <div class="txt">
+                        <Label for="emailname" class="txt1">Email</Label> <br>
+                        <Input type="email" name="email" id="emailname" placeholder="Enter your Email" />
+                    </div>
+                    <div class="txt">
+                      <Label for="name" class="txt1">Username</Label> <br>
+                      <Input type="text" name="name" id="name" placeholder="Enter your username" />
+                    </div>
+                    <div class="txt">
+                        <Label for="passname" class="txt1">Password</Label> <br>
+                        <Input type="password" name="pass" id="passname" placeholder="Enter your Password" />
+                    </div>
+                </CardContent>
+                <CardFooter class="Footer">
+                    <Button type="reset" class="cancel">Cancel</Button>
+                    <Button type="submit" class="submit">Submit</Button>
+                </CardFooter>
+            </form>
+            </div>
+        </card>
+    </div>
+
+    <script> 
+    const result = document.getElementById("application");
+    result.addEventListener('submit', prevent);
+
+    function prevent(e) {
+        e.preventDefault();
+
+        const mail= document.getElementById("emailname").value;
+        const pass= document.getElementById("passname").value;
+        const name= document.getElementById("name").value;
+
+        async function calling(){
+            const url = '/users/userform'
+            const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                Email : mail,
+                Pass: pass,
+                Name: name,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+    }
+    calling();
+    }
+</script>
+
+
+</body>
+</html>

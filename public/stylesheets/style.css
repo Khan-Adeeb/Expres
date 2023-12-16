@@ -1,0 +1,148 @@
+body {
+
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.hello {
+  padding: 15px;
+  text-align: center;
+  background-color: cadetblue;
+}
+.hello a {
+  margin: 10px;
+  color: beige;
+  text-decoration: none;
+}
+.basic_form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.basic_form div {
+  margin: 8px;
+}
+.form {
+  background-color: azure;
+}
+.form h1 {
+  text-align: center;
+  font-family: 'Mochiy Pop One', sans-serif;
+  text-decoration: underline;
+  color: darkgray;
+  padding: 10px;
+}
+input[type="text"] {
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+  border-radius: 5px;
+}
+input[type="number"] {
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+  border-radius: 5px;
+}
+input[type="email"] {
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+  border-radius: 5px;
+}
+input[type="submit"] {
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #1877f2;
+  border-color: #1877f2;
+  color: white;
+  font-family: 'Mochiy Pop One', sans-serif;
+}
+input[type="date"] {
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+  border-radius: 5px;
+}
+textarea {
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+  border-radius: 5px;
+}
+.adeeb {
+  color: red;
+  font-size: 18px;
+}
+.Shoaibakhtar {
+  color: blue;
+  font-size: 25px;
+}
+.jamia {
+  color: green;
+  font-size: 16;
+  background-color: yellow;
+}
+
+article {
+  float: right;
+}  
+
+
+nav {
+  grid-area: upar;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px 0px 15px;
+  text-align: center;
+  background-color: cadetblue;
+}
+
+nav a {
+  color: beige;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin: 0px 10px 0px 10px;
+  background-color: transparent;
+}
+
+nav a:hover {
+  color: crimson;
+}
+
+span {
+  color: black;
+}
+
+.logo {
+  margin-left: 20px;
+  color: beige;
+  letter-spacing: 1px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button {
+  margin: 5px 20px 5px 5px;
+  color: beige;
+  background-color: mediumturquoise ;
+  padding: 7px 12px;
+  border-radius: 35px;
+  border: 1px solid beige;
+  font-weight: bold;
+}
+
+.button:hover {
+  color: crimson;
+  background-color: beige;
+  transition: 0.5s;
+  border: 1px solid black;
+}
