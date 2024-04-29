@@ -60,8 +60,6 @@ function checker(req,res,next) {
     }
 }
 
-
-
 // function checker(req,res,next){
 //     const mail= req.query.email;
 //     const pass= req.query.password;
@@ -76,7 +74,6 @@ function checker(req,res,next) {
 //         next();
 //     }
 //   }
-
 
 
 router.get('/newlogin', function(req,res){
