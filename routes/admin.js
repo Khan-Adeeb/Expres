@@ -37,8 +37,8 @@ router.post('/card', checker, function(req, res){
 });
 
 function checker(req,res,next) {
-    const idmail= req.body.Email;
-    const idselect= req.body.Select;
+    const idmail = req.body.Email;
+    const idselect = req.body.Select;
     console.log("mail : " , idmail , "Framework : ", idselect);
     
     if((idmail && idselect) == ""){
