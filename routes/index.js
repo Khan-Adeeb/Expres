@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
       if(err)
       throw err;
       console.log(results);
-
       const data= results;
     res.render('index', { title: 'Student Details' , data:data});
   }
