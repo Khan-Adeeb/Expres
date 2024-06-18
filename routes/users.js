@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 
 
 
-///------------MULTER----------------///
+///------------ MULTER ----------------///
 router.get('/multer', function(req,res){
   res.render('Multer');
 });
@@ -74,7 +74,7 @@ router.post('/multer' , upload.single('avatar'), function(req,res,next){
   
   const data1= req.body.name;
   const data2= req.file.filename;
-  
+
   db.query(
     `INSERT INTO multer (name, path) VALUES ('${data1}','${data2}')`,
     function(err,results){
